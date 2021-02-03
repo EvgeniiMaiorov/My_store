@@ -1,0 +1,27 @@
+<h1>Товары</h1>
+
+<% if @items.empty? %>
+    <b>Товары отсутствуют</b>
+<% else %>
+<table>
+    <tr>
+        <th>Id товара</th>
+        <th>Название</th>
+        <th>Цена</th>
+        <th>Рейтинг</th>
+        <th></th>
+    </tr>
+        
+
+    <% @items.each do |i| %>
+
+        <tr data-item_id="<%= i.id %>">
+            <td><%= i.id %></td>
+            <td><%= link_to i.name, item_path(i) %></td>
+            <td><%= i.price %> руб.</td>
+            <td><%= i.votes_count %>, <%= link_to "+", upvote_item_path(i) %>
+            <td><span class="deleteAction">Удалить</span></td>
+        </tr>
+    <% end %>
+
+<% end %>
